@@ -33,14 +33,16 @@ allprojects {
         //mavenCentral()
         maven { url "https://jitpack.io" }
     }
-}
-
-android {
-    // ...其他配置
-
-    lintOptions {
-        abortOnError false // 允许构建在发现 lint 错误时继续进行
-        disable 'UsingOnClickInXml' // 在这里添加要禁用的 lint 错误名称
+    // 添加 lintOptions 配置
+    subprojects {
+        afterEvaluate {
+            android {
+                lintOptions {
+                    abortOnError false // 允许构建在发现 lint 错误时继续进行
+                    disable 'UsingOnClickInXml' // 在这里添加要禁用的 lint 错误名称
+                }
+            }
+        }
     }
 }
 
